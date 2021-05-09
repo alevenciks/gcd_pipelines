@@ -19,5 +19,6 @@ pipelines:
                             - exec:
                                 command: bash
                                 arguments: 
+                                    - c
                                     - echo "Building java app"
         
