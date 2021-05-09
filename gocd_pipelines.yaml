@@ -1,78 +1,77 @@
 ---
-format_version: 10
-pipelines:
-    java_microservice:
-        group: micronservices
-        lock_behaviour: unlockWhenFinished
-        label_template: 
-        materials:
-            git_java_microservice:
-                git: https://github.com/alevenciks/gcd_pipelines.git
-                branch: main
-                shallow_clone: true
-                auto_update: true
-        stages:
-            - build:
-                jobs:
-                    build:
-                        tasks:
-                            - exec:
-                                command: bash
-                                arguments: 
-                                    - -c
-                                    - echo "Building java app"
-            - deploy-dev:
-                jobs:
-                    build:
-                        tasks:
-                            - exec:
-                                command: bash
-                                arguments: 
-                                    - -c
-                                    - echo "Deploy to DEV"
-            - test-dev:
-                jobs:
-                    build:
-                        tasks:
-                            - exec:
-                                command: bash
-                                arguments: 
-                                    - -c
-                                    - echo "Test DEV"
-            - deploy-int:
-                jobs:
-                    build:
-                        tasks:
-                            - exec:
-                                command: bash
-                                arguments: 
-                                    - -c
-                                    - echo "Deploy to INT"
-            - test-int:
-                jobs:
-                    build:
-                        tasks:
-                            - exec:
-                                command: bash
-                                arguments: 
-                                    - -c
-                                    - echo "Test INT"
-            - deploy-prod:
-                jobs:
-                    build:
-                        tasks:
-                            - exec:
-                                command: bash
-                                arguments: 
-                                    - -c
-                                    - echo "Deploy to PROD"
-            - test-prod:
-                jobs:
-                    build:
-                        tasks:
-                            - exec:
-                                command: bash
-                                arguments: 
-                                    - -c
-                                    - echo "Test PROD"
-        
+    format_version: 10
+    pipelines:
+      java_microservice:
+        group: microservices
+        lock_behavior: unlockWhenFinished
+        label_template: "${git_java_microservice}"
+        materials: 
+          git_java_microservice:
+            git: https://github.com/mtararujs/api_tests_ci.git
+            branch: main
+            shallow_clone: true
+            auto_update: true
+        stages: 
+          - build:
+              jobs:
+                build:
+                  tasks:
+                    - exec:
+                        command: bash
+                        arguments:
+                          - -c 
+                          - echo "Building java app"
+          - deploy-dev:
+              jobs:
+                deploy:
+                  tasks:
+                    - exec:
+                        command: bash
+                        arguments:
+                          - -c 
+                          - echo "Deploy to DEV"
+          - test-dev:
+              jobs:
+                test:
+                  tasks:
+                    - exec:
+                        command: bash
+                        arguments:
+                          - -c 
+                          - echo "Tests execution to DEV"
+          - deploy-int:
+              jobs:
+                deploy:
+                  tasks:
+                    - exec:
+                        command: bash
+                        arguments:
+                          - -c 
+                          - echo "Deploy to INT"
+          - test-int:
+              jobs:
+                test:
+                  tasks:
+                    - exec:
+                        command: bash
+                        arguments:
+                          - -c 
+                          - echo "Tests execution to INT"
+          - deploy-prd:
+              jobs:
+                deploy:
+                  tasks:
+                    - exec:
+                        command: bash
+                        arguments:
+                          - -c 
+                          - echo "Deploy to PRD"
+          - test-prd:
+              jobs:
+                test:
+                  tasks:
+                    - exec:
+                        command: bash
+                        arguments:
+                          - -c 
+                          - echo "Tests execution to PRD"
