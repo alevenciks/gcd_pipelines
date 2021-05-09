@@ -19,6 +19,60 @@ pipelines:
                             - exec:
                                 command: bash
                                 arguments: 
-                                    - c
+                                    - -c
                                     - echo "Building java app"
+            - deploy-dev:
+                jobs:
+                    build:
+                        tasks:
+                            - exec:
+                                command: bash
+                                arguments: 
+                                    - -c
+                                    - echo "Deploy to DEV"
+            - test-dev:
+                jobs:
+                    build:
+                        tasks:
+                            - exec:
+                                command: bash
+                                arguments: 
+                                    - -c
+                                    - echo "Test DEV"
+            - deploy-int:
+                jobs:
+                    build:
+                        tasks:
+                            - exec:
+                                command: bash
+                                arguments: 
+                                    - -c
+                                    - echo "Deploy to INT"
+            - test-int:
+                jobs:
+                    build:
+                        tasks:
+                            - exec:
+                                command: bash
+                                arguments: 
+                                    - -c
+                                    - echo "Test INT"
+            - deploy-prod:
+                jobs:
+                    build:
+                        tasks:
+                            - exec:
+                                command: bash
+                                arguments: 
+                                    - -c
+                                    - echo "Deploy to PROD"
+            - test-prod:
+                jobs:
+                    build:
+                        tasks:
+                            - exec:
+                                command: bash
+                                arguments: 
+                                    - -c
+                                    - echo "Test PROD"
         
